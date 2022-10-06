@@ -1,0 +1,105 @@
+DiscordAPIError[50035]: Invalid Form Body
+limit[NUMBER_TYPE_MIN]: int value should be greater than or equal to 1.
+    at SequentialHandler.runRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:287:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async SequentialHandler.queueRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:99:14)
+    at async REST.request (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/REST.cjs:52:22)
+    at async MessageManager._fetchMany (/root/bots/privatebot/node_modules/discord.js/src/managers/MessageManager.js:106:18)
+    at async TextChannel.bulkDelete (/root/bots/privatebot/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:326:20)
+    at async Object.execute (/root/bots/privatebot/src/commands/clearmsg.js:15:9)
+    at async Client.<anonymous> (/root/bots/privatebot/src/index.js:52:9) {
+  rawError: {
+    code: 50035,
+    errors: { limit: [Object] },
+    message: 'Invalid Form Body'
+  },
+  code: 50035,
+  status: 400,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/channels/1006980062115020831/messages?limit=-3',
+  requestBody: { files: undefined, json: undefined }
+}
+DiscordAPIError[50035]: Invalid Form Body
+limit[NUMBER_TYPE_MIN]: int value should be greater than or equal to 1.
+    at SequentialHandler.runRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:287:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async SequentialHandler.queueRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:99:14)
+    at async REST.request (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/REST.cjs:52:22)
+    at async MessageManager._fetchMany (/root/bots/privatebot/node_modules/discord.js/src/managers/MessageManager.js:106:18)
+    at async TextChannel.bulkDelete (/root/bots/privatebot/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:326:20)
+    at async Object.execute (/root/bots/privatebot/src/commands/clearmsg.js:15:9)
+    at async Client.<anonymous> (/root/bots/privatebot/src/index.js:52:9) {
+  rawError: {
+    code: 50035,
+    errors: { limit: [Object] },
+    message: 'Invalid Form Body'
+  },
+  code: 50035,
+  status: 400,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/channels/1006980062115020831/messages?limit=-5',
+  requestBody: { files: undefined, json: undefined }
+}
+DiscordAPIError[50035]: Invalid Form Body
+limit[NUMBER_TYPE_MIN]: int value should be greater than or equal to 1.
+    at SequentialHandler.runRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:287:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async SequentialHandler.queueRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:99:14)
+    at async REST.request (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/REST.cjs:52:22)
+    at async MessageManager._fetchMany (/root/bots/privatebot/node_modules/discord.js/src/managers/MessageManager.js:106:18)
+    at async TextChannel.bulkDelete (/root/bots/privatebot/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:326:20)
+    at async Object.execute (/root/bots/privatebot/src/commands/clearmsg.js:15:9)
+    at async Client.<anonymous> (/root/bots/privatebot/src/index.js:52:9) {
+  rawError: {
+    code: 50035,
+    errors: { limit: [Object] },
+    message: 'Invalid Form Body'
+  },
+  code: 50035,
+  status: 400,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/channels/1006980062115020831/messages?limit=-5',
+  requestBody: { files: undefined, json: undefined }
+}
+DiscordAPIError[50035]: Invalid Form Body
+limit[NUMBER_TYPE_MIN]: int value should be greater than or equal to 1.
+    at SequentialHandler.runRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:287:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async SequentialHandler.queueRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:99:14)
+    at async REST.request (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/REST.cjs:52:22)
+    at async MessageManager._fetchMany (/root/bots/privatebot/node_modules/discord.js/src/managers/MessageManager.js:106:18)
+    at async TextChannel.bulkDelete (/root/bots/privatebot/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:326:20)
+    at async Object.execute (/root/bots/privatebot/src/commands/clearmsg.js:15:9)
+    at async Client.<anonymous> (/root/bots/privatebot/src/index.js:52:9) {
+  rawError: {
+    code: 50035,
+    errors: { limit: [Object] },
+    message: 'Invalid Form Body'
+  },
+  code: 50035,
+  status: 400,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/channels/1006980062115020831/messages?limit=-5',
+  requestBody: { files: undefined, json: undefined }
+}
+DiscordAPIError[50035]: Invalid Form Body
+limit[NUMBER_TYPE_MIN]: int value should be greater than or equal to 1.
+    at SequentialHandler.runRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:287:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async SequentialHandler.queueRequest (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/handlers/SequentialHandler.cjs:99:14)
+    at async REST.request (/root/bots/privatebot/node_modules/@discordjs/rest/dist/lib/REST.cjs:52:22)
+    at async MessageManager._fetchMany (/root/bots/privatebot/node_modules/discord.js/src/managers/MessageManager.js:106:18)
+    at async TextChannel.bulkDelete (/root/bots/privatebot/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:326:20)
+    at async Object.execute (/root/bots/privatebot/src/commands/clearmsg.js:15:9)
+    at async Client.<anonymous> (/root/bots/privatebot/src/index.js:52:9) {
+  rawError: {
+    code: 50035,
+    errors: { limit: [Object] },
+    message: 'Invalid Form Body'
+  },
+  code: 50035,
+  status: 400,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/channels/1006980062115020831/messages?limit=-5',
+  requestBody: { files: undefined, json: undefined }
+}

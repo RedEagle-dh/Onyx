@@ -1,0 +1,35 @@
+
+require('dotenv').config({path: "../../.env"});
+const redisClient = require("../../database/database")
+const {
+    SlashCommandBuilder,
+    EmbedBuilder
+} = require("discord.js");
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName("rrremove")
+        .setDescription("Removing a role from the select-menu")
+        .addStringOption(option => option.setName("gamename").setDescription("The name of the game").setRequired(true))
+    ,
+    async execute(event) {
+        const formattedGameName = event.options.getString("gamename").toLowerCase().replace(/ /g, "_");
+        const eb = new EmbedBuilder().setColor("#2F3136");
+        redisClient.del(`roleselection-${event.guild.id}-${formattedGameName}`).then(() => {
+            eb.addFields({
+                name: ":white_check_mark: Success",
+                value: `The role \`${event.options.getString("gamename")}\` was removed from the select-menu!`,
+                inline: true
+            });
+            event.reply({embeds: [eb], ephemeral: true});
+        }).catch((err) => {
+            eb.setColor("Red").addFields({
+                name: ":x: Database error",
+                value: `\`\`\`${err.message}\`\`\``,
+                inline: true
+            })
+            event.reply({embeds: [eb], ephemeral: true});
+        })
+
+    }
+}
+
