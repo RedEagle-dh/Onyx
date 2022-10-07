@@ -32,6 +32,10 @@ module.exports = {
                 {
                     name: "Moderation",
                     value: "moderation"
+                },
+                {
+                    name: "Polls",
+                    value: "polls"
                 }
             )))
         .addSubcommand(subcommand => subcommand.setName("lock").setDescription("Lock a function to a guild")
@@ -60,6 +64,10 @@ module.exports = {
                 {
                     name: "Moderation",
                     value: "moderation"
+                },
+                {
+                    name: "Polls",
+                    value: "polls"
                 }
             )))
     ,
@@ -129,6 +137,11 @@ module.exports = {
                     }
                     case "moderation": {
                         await redisClient.set(`tempbans-${guildId}`, JSON.stringify(Object({bans: []})));
+                        break;
+                    }
+                    case "polls": {
+                        await redisClient.set(`polls-${guildId}`, JSON.stringify(Object({polls: []})));
+                        break;
                     }
                 }
                 jsonObj[functionToLock].push(guildId);
@@ -176,6 +189,11 @@ module.exports = {
                     }
                     case "moderation": {
                         await redisClient.del(`tempbans-${guildId}`);
+                        break;
+                    }
+                    case "polls": {
+                        await redisClient.del(`polls-${guildId}`);
+                        break;
                     }
                 }
                 jsonObj[functionToLock].splice(jsonObj[functionToLock].indexOf(guildId), 1);
