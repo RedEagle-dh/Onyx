@@ -1,8 +1,8 @@
 require('dotenv').config({path: "../.env"});
-const { Client, Collection, EmbedBuilder, ActionRowBuilder } = require("discord.js");
+const { Client, Collection, EmbedBuilder, ActionRowBuilder, Partials} = require("discord.js");
 const { DisTube } = require("distube");
 const { createButtons } = require("./functions/OuterFunctions");
-const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences",] })
+const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences", "GuildMessageReactions"], partials: [Partials.Reaction, Partials.Message, Partials.Channel] })
 const fs = require("fs");
 const deploy = require("./deploycommands");
 const discordModals = require("discord-modals");

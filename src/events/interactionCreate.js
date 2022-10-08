@@ -325,13 +325,27 @@ module.exports = {
                 await command.execute(event);
             } catch (error) {
                 console.error(error);
-                event.reply({embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
-                        .setDescription("An error occurred while executing this command. Please try to correct your input. If the error is still there, contact the developer.")
-                        .addFields({
-                            name: "Error message",
-                            value: `\`\`\`js\n${error.message}\`\`\``,
-                            inline: true
-                        }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
+
+                    if (event.deferred) {
+                        event.editReply({embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
+                                .setDescription("An error occurred while executing this command. Please try to correct your input. If the error is still there, contact the developer.")
+                                .addFields({
+                                    name: "Error message",
+                                    value: `\`\`\`js\n${error.message}\`\`\``,
+                                    inline: true
+                                }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
+                    } else {
+                        event.reply({embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
+                                .setDescription("An error occurred while executing this command. Please try to correct your input. If the error is still there, contact the developer.")
+                                .addFields({
+                                    name: "Error message",
+                                    value: `\`\`\`js\n${error.message}\`\`\``,
+                                    inline: true
+                                }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
+                    }
+
+
+
             }
         }
 
