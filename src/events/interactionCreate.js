@@ -317,7 +317,8 @@ module.exports = {
             && event.commandName !== "say"
             && event.commandName !== "eval"
             && !event.customId
-            && event.commandName !== "help") {
+            && event.commandName !== "help"
+            && event.commandName !== "play") {
             await event.deferReply();
         }
         if (command && event.type) {

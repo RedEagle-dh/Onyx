@@ -53,6 +53,8 @@ client.DisTube = new DisTube(client, {
     searchSongs: 5,
     leaveOnStop: false,
     emitNewSongOnly: true,
+    leaveOnFinish: true,
+    leaveOnEmpty: true,
 })
 
 client.DisTube.on("searchResult", (event, result) => {
@@ -77,7 +79,7 @@ client.DisTube.on("searchResult", (event, result) => {
         value: `${res}`,
         inline: true
     })
-    event.editReply({embeds: [eb], components: [buttons]})
+    event.reply({embeds: [eb], components: [buttons]})
 
 })
 
