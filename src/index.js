@@ -1,4 +1,4 @@
-require('dotenv').config({path: "../.env"});
+require('dotenv').config({path: ".env"});
 const { Client, Collection, EmbedBuilder, ActionRowBuilder, Partials} = require("discord.js");
 const { DisTube } = require("distube");
 const { createButtons } = require("./functions/OuterFunctions");
@@ -9,25 +9,30 @@ const discordModals = require("discord-modals");
 const redisClient = require("./database/database")
 deploy.data.deploycmd();
 
+
 discordModals(client);
 
-const eventFiles = fs.readdirSync(__dirname + '/events').filter(file => file.endsWith('.js'));
-for (const file of eventFiles) {
-    const event = require(`./events/${file}`);
-    if (event.once) {
-        client.once(event.name, (...args) => event.execute(...args, client));
-    } else {
-        client.on(event.name, (...args) => event.execute(...args, client));
+const eventDirs = fs.readdirSync(__dirname + "/events");
+for (const dir of eventDirs) {
+    const eventFiles = fs.readdirSync(__dirname + `/events/${dir}`).filter(file => file.endsWith('.js'));
+    for (const file of eventFiles) {
+        const event = require(`./events/${dir}/${file}`);
+        if (event.once) {
+            client.once(event.name, (...args) => event.execute(...args, client));
+        } else {
+            client.on(event.name, (...args) => event.execute(...args, client));
+        }
     }
 }
+
 async function main() {
 
     client.commands = new Collection();
-    const directories = fs.readdirSync("./commands");
+    const directories = fs.readdirSync(__dirname + "/commands");
     for (const directory of directories) {
-        const commandFiles = fs.readdirSync(`./commands/${directory}`).filter(file => file.endsWith(".js"));
+        const commandFiles = fs.readdirSync(__dirname + `/commands/${directory}`).filter(file => file.endsWith(".js"));
         for (const file of commandFiles) {
-            const command = require(`./commands/${directory}/${file}`);
+            const command = require(__dirname + `/commands/${directory}/${file}`);
             client.commands.set(command.data.name, command);
         }
     }

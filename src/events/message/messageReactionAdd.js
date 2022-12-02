@@ -1,4 +1,4 @@
-const redisClient = require('../database/database');
+const redisClient = require('../../database/database');
 module.exports = {
     name: "messageReactionAdd",
     async execute(reaction, user) {

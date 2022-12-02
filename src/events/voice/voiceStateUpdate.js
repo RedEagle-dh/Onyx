@@ -1,7 +1,7 @@
-const redisClient = require("../database/database");
-const {voiceAction} = require("../functions/embedCreator");
+const redisClient = require("../../database/database");
+const {voiceAction} = require("../../functions/embedCreator");
 const {EmbedBuilder} = require("discord.js");
-const {stopRecordVoiceTime, recordVoiceTime} = require("../functions/OuterFunctions");
+const {stopRecordVoiceTime, recordVoiceTime} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "voiceStateUpdate",
     async execute(oldState, newState) {

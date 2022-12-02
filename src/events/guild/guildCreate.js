@@ -1,4 +1,4 @@
-const deploy = require("../deploycommands");
+const deploy = require("../../deploycommands");
 module.exports = {
     name: "guildCreate",
     async execute() {

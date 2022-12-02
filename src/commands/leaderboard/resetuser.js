@@ -1,8 +1,10 @@
 const {
     SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder
 } = require("discord.js");
-const redis = require("redis");
 const {ButtonStyle} = require("discord-api-types/v10");
+
+const redis = require("redis");
+
 const redisClient = redis.createClient({
     socket: {
         host: process.env.REDIS_HOST,

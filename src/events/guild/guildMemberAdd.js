@@ -1,6 +1,6 @@
-const redisClient = require("../database/database");
-const {featureIsUnlocked} = require("../functions/OuterFunctions");
-const {functionLockedEmbed} = require("../functions/embedCreator");
+const redisClient = require("../../database/database");
+const {featureIsUnlocked} = require("../../functions/OuterFunctions");
+const {functionLockedEmbed} = require("../../functions/embedCreator");
 require("dotenv").config({path: "../../.env"});
 module.exports = {
     name: "guildMemberAdd",
@@ -8,6 +8,8 @@ module.exports = {
         if (await featureIsUnlocked(member.guild.id, "serverstats")) {
             const privateServerId = process.env.SERVERID_PRIVATE;
             const mrFunLeagueBuildsId = process.env.SERVERID_MRFUNLEAGUEBUILDS;
+            console.log(mrFunLeagueBuildsId);
+            console.log(member.guild.id)
             if (member.guild.id === privateServerId) {
                 const role = member.guild.roles.cache.find(g => g.id === "756946278075596852");
                 await member.roles.add(role);

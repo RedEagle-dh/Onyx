@@ -1,6 +1,6 @@
-const deploy = require("../deploycommands");
-const {fatalError} = require("../functions/embedCreator");
-const {successEmbed} = require("../functions/OuterFunctions");
+const deploy = require("../../deploycommands");
+const {fatalError} = require("../../functions/embedCreator");
+const {successEmbed} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "modalSubmit",
     async execute(event) {

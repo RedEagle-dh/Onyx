@@ -1,10 +1,10 @@
 const {InteractionType, ChannelType} = require("discord-api-types/v10");
 const {EmbedBuilder, PermissionsBitField} = require("discord.js");
-const redisClient = require("../database/database");
+const redisClient = require("../../database/database");
 const {Modal, TextInputComponent, showModal} = require("discord-modals");
-const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../functions/embedCreator");
-const {resolveButton} = require("../functions/resolveFunctions");
-const {getUserFromMention} = require("../functions/OuterFunctions");
+const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../../functions/embedCreator");
+const {resolveButton} = require("../../functions/resolveFunctions");
+const {getUserFromMention} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "interactionCreate",
     async execute(event) {

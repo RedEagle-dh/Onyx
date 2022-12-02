@@ -1,7 +1,7 @@
 const {EmbedBuilder} = require("discord.js");
-const {featureIsUnlocked} = require("../functions/OuterFunctions");
+const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {AuditLogEvent} = require("discord-api-types/v10");
-const redisClient = require("../database/database");
+const redisClient = require("../../database/database");
 module.exports = {
     name: "guildMemberUpdate",
     async execute(oldMember, newMember, client) {

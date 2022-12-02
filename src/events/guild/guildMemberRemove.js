@@ -1,5 +1,5 @@
-const redisClient = require("../database/database");
-const {featureIsUnlocked} = require("../functions/OuterFunctions");
+const redisClient = require("../../database/database");
+const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {EmbedBuilder} = require("discord.js");
 module.exports = {
     name: "guildMemberRemove",

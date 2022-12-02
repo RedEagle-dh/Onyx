@@ -1,4 +1,5 @@
-const {featureIsUnlocked} = require("../functions/OuterFunctions");
+const {featureIsUnlocked} = require("../../functions/OuterFunctions");
+
 require("dotenv").config({path: "../../.env"});
 module.exports = {
     name: "guildMemberLeave",

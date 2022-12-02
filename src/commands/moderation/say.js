@@ -9,7 +9,7 @@ module.exports = {
     ,
     async execute(event) {
         if (!await featureIsUnlocked(event.guild.id, "moderation")) {
-            event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
+            event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }
         const msg = event.options.getString("msg");

@@ -1,5 +1,5 @@
 const {ActivityType, PresenceUpdateStatus} = require("discord-api-types/v10");
-const redisClient = require("../database/database");
+const redisClient = require("../../database/database");
 module.exports = {
     name: "ready",
     once: true,
