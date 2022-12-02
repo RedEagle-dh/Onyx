@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const redisClient = require("../../database/database");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {functionLockedEmbed} = require("../../functions/embedCreator");
 module.exports = {
@@ -12,7 +11,7 @@ module.exports = {
         .addSubcommand(subcommand => subcommand.setName("remove").setDescription("Remove a birthday").addUserOption(option => option.setName("member").setDescription("The member").setRequired(true)))
         .addSubcommand(subcommand => subcommand.setName("show").setDescription("Show your birthday or another member's birthday").addUserOption(option => option.setName("member").setDescription("The member").setRequired(false)))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (!await featureIsUnlocked(event.guild.id, "birthday")) {
             event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;

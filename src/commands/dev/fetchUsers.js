@@ -1,13 +1,12 @@
 const {
     SlashCommandBuilder, EmbedBuilder
 } = require("discord.js");
-const redisClient = require("../../database/database");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("fetchusers")
         .setDescription("Fetching users to the database")
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (event.member.id !== "324890484944404480") {
             event.reply({embeds: [new EmbedBuilder().setColor("#2F3136").addFields({
                     name: ":x: No permissions!",

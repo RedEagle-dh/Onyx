@@ -1,7 +1,6 @@
 const {
     SlashCommandBuilder, EmbedBuilder
 } = require("discord.js");
-const redisClient = require("../../database/database");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("bulkroles")

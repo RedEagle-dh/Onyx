@@ -1,7 +1,6 @@
 const {SlashCommandBuilder} = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {functionLockedEmbed, getBanEmbed} = require("../../functions/embedCreator");
-const redisClient = require("../../database/database");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("tempban")
@@ -36,7 +35,7 @@ module.exports = {
                 }))
         .addStringOption(option => option.setName("comment").setDescription("A comment for the ban").setRequired(false))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (!await featureIsUnlocked(event.guild.id, "moderation")) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;

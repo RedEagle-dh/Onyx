@@ -1,6 +1,5 @@
 const {EmbedBuilder, ButtonBuilder} = require("discord.js");
 const {ButtonStyle} = require("discord-api-types/v10");
-const redisClient = require("../database/database");
 
 
 function successEmbed(messagevalue) {
@@ -79,7 +78,7 @@ function getLabel(i) {
     }
 }
 
-async function featureIsUnlocked(guildId, feature) {
+async function featureIsUnlocked(guildId, feature, redisClient) {
     const jsonString = await redisClient.get(`functionconfig`);
     const json = JSON.parse(jsonString);
     if (json[feature].includes(guildId)) {

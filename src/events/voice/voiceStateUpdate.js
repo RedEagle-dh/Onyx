@@ -1,10 +1,9 @@
-const redisClient = require("../../database/database");
 const {voiceAction} = require("../../functions/embedCreator");
 const {EmbedBuilder} = require("discord.js");
 const {stopRecordVoiceTime, recordVoiceTime} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "voiceStateUpdate",
-    async execute(oldState, newState) {
+    async execute(oldState, newState, redisClient) {
         // Voice Stats
         const jsonString = await redisClient.get(`${newState.guild.id}-${newState.member.id}`);
         const jsonObj = JSON.parse(jsonString);
@@ -54,7 +53,7 @@ module.exports = {
                     if (oldState.channel.parent.id === jsonFile.voicecategorychannel) {
                         if (!jsonFile.immunevoices.includes(oldState.channelId)) {
                             if (oldState.channel.members.size === 0) {
-                                await voiceAction(2, oldState.member, oldState.channel);
+                                await voiceAction(2, oldState.member, oldState.channel, redisClient);
                                 await oldState.channel.delete().catch((err) => {
                                     try {
                                         const eb = new EmbedBuilder().setColor("Red").addFields({

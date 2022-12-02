@@ -1,7 +1,6 @@
 
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
-const { createRoleSelectionDoc, createTicketSelectionDoc} = require("../../functions/jsonCreator");
+const { createTicketSelectionDoc} = require("../../functions/jsonCreator");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,7 +9,7 @@ module.exports = {
         .addStringOption(option => option.setName("ticketname").setDescription("The name of the ticket").setRequired(true))
         .addStringOption(option => option.setName("emoji").setDescription("The emoji you want to use").setRequired(true))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const ticketname = event.options.getString("ticketname");
         const formattedticketname = ticketname.toLowerCase().replace(/ /g, "_");
         const eb = new EmbedBuilder().setColor("#2F3136");

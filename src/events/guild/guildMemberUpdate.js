@@ -1,10 +1,9 @@
 const {EmbedBuilder} = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {AuditLogEvent} = require("discord-api-types/v10");
-const redisClient = require("../../database/database");
 module.exports = {
     name: "guildMemberUpdate",
-    async execute(oldMember, newMember, client) {
+    async execute(oldMember, newMember, redisClient, client) {
         if (await featureIsUnlocked(oldMember.guild.id, "moderation")) {
             const jsonFile = JSON.parse(await redisClient.get(`serverconfig-${oldMember.guild.id}`))
             let log = oldMember.guild.channels.cache.find(c => c.id === jsonFile.logchannel);

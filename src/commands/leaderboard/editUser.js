@@ -1,7 +1,6 @@
 const {
     SlashCommandBuilder, EmbedBuilder
 } = require("discord.js");
-const redisClient = require("../../database/database")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("edit")
@@ -13,7 +12,7 @@ module.exports = {
             .addUserOption(option => option.setName("user").setDescription("The user to edit").setRequired(true))
             .addNumberOption(option => option.setName("messages").setDescription("The messages to add").setRequired(true)))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (event.member.id !== "324890484944404480") {
             event.reply({embeds: [new EmbedBuilder().setColor("#2F3136").addFields({
                     name: ":x: No permissions!",

@@ -1,7 +1,6 @@
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {functionLockedEmbed} = require("../../functions/embedCreator");
-const redisClient = require("../../database/database");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("poll")
@@ -18,7 +17,7 @@ module.exports = {
             .addStringOption(option => option.setName("pollid").setDescription("The id of the poll").setRequired(true))
             .addBooleanOption(option => option.setName("share").setDescription("Whether you want to share the result or not").setRequired(true))
         ),
-    async execute(event) {
+    async execute(event, redisClient) {
         if (!await featureIsUnlocked(event.guild.id, "polls")) {
             event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;

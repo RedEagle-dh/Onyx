@@ -1,7 +1,6 @@
 const {
     SlashCommandBuilder, EmbedBuilder
 } = require("discord.js");
-const redisClient = require("../../database/database");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("functions")
@@ -71,7 +70,7 @@ module.exports = {
                 }
             )))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (event.member.id !== "324890484944404480") {
             event.editReply({
                 embeds: [new EmbedBuilder().setColor("#2F3136").addFields({

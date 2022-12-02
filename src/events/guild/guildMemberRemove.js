@@ -1,9 +1,8 @@
-const redisClient = require("../../database/database");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {EmbedBuilder} = require("discord.js");
 module.exports = {
     name: "guildMemberRemove",
-    async execute(member) {
+    async execute(member, redisClient) {
         if (await featureIsUnlocked(member.guild.id, "serverstats")) {
             if (member.guild.id === process.env.SERVERID_PRIVATE) {
                 const channel = member.guild.channels.cache.find(c => c.id === "817413091704307712");

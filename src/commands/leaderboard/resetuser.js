@@ -3,15 +3,6 @@ const {
 } = require("discord.js");
 const {ButtonStyle} = require("discord-api-types/v10");
 
-const redis = require("redis");
-
-const redisClient = redis.createClient({
-    socket: {
-        host: process.env.REDIS_HOST,
-        port: 6379
-    },
-    password: process.env.REDIS_PASSWORD
-})
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("reset")

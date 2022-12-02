@@ -1,7 +1,6 @@
-const redisClient = require('../../database/database');
 module.exports = {
     name: "messageReactionRemove",
-    async execute(reaction, user) {
+    async execute(reaction, redisClient, user) {
         if (user.id === reaction.client.user.id) {
             return;
         }

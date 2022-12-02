@@ -1,10 +1,9 @@
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const redisClient = require("../../database/database")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ping")
         .setDescription("Pong!"),
-    async execute(event) {
+    async execute(event, redisClient) {
         const timer = new Date();
         let timer2;
         const clientPing = Date.now() - event.createdTimestamp;

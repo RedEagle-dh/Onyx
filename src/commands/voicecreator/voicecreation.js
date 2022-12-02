@@ -1,4 +1,3 @@
-const redisClient = require("../../database/database")
 const {
     SlashCommandBuilder,
     SelectMenuBuilder,
@@ -12,7 +11,7 @@ module.exports = {
         .setName("voicecreation")
         .setDescription("Sending a message for voicecreation")
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;

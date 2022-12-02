@@ -1,7 +1,6 @@
-const redisClient = require("../../database/database");
 module.exports = {
     name: "messageCreate",
-    async execute(message) {
+    async execute(message, redisClient) {
         if (message.content.startsWith("!say") && message.member.id !== "1002251457392820244") {
             const msg = message.content.split(" ")
             let newMsg = "";

@@ -1,9 +1,7 @@
-const redisClient = require("../../database/database")
 const {
     SlashCommandBuilder,
-    SelectMenuBuilder,
     ActionRowBuilder,
-    SelectMenuOptionBuilder, EmbedBuilder, ButtonBuilder
+    EmbedBuilder, ButtonBuilder
 } = require("discord.js");
 const {ButtonStyle} = require("discord-api-types/v10");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");

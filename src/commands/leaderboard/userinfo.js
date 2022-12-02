@@ -1,5 +1,4 @@
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
 
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
         .setDescription("Information about a specific user")
         .addUserOption(option => option.setName("user").setDescription("The user to get information about").setRequired(false))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const user = event.options.getUser("user");
         let member;
         if (user === undefined || user === null) {

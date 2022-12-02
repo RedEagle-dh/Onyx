@@ -1,6 +1,5 @@
 
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
 const {
     SlashCommandBuilder,
     EmbedBuilder
@@ -11,7 +10,7 @@ module.exports = {
         .setDescription("Removing a role from the select-menu")
         .addStringOption(option => option.setName("gamename").setDescription("The name of the game").setRequired(true))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const formattedGameName = event.options.getString("gamename").toLowerCase().replace(/ /g, "_");
         const eb = new EmbedBuilder().setColor("#2F3136");
         redisClient.del(`roleselection-${event.guild.id}-${formattedGameName}`).then(() => {

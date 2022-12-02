@@ -1,5 +1,4 @@
 const {EmbedBuilder, SlashCommandBuilder} = require("discord.js");
-const redisClient = require("../../database/database")
 const {PermissionFlagsBits} = require("discord-api-types/v10");
 const {replaceByValue} = require("../../functions/jsonCreator");
 module.exports = {
@@ -30,7 +29,7 @@ module.exports = {
         .addChannelOption(option => option.setName("channel").setDescription("The channel you want to set").setRequired(true))
 
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const functionName = event.options.getString("function");
         const channel = event.options.getChannel("channel");
 

@@ -1,5 +1,4 @@
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
 
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 module.exports = {
@@ -18,7 +17,7 @@ module.exports = {
                 }
             ))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const eb = new EmbedBuilder().setColor("#2F3136");
         const activity = event.options.getString("activity");
         const keys = await redisClient.keys(`${event.guild.id}-*`)
@@ -98,6 +97,6 @@ module.exports = {
                 })
         }
 
-        event.editReply({embeds: [eb]})
+        await event.editReply({embeds: [eb]})
     }
 }

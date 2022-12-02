@@ -1,12 +1,11 @@
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
 const { SlashCommandBuilder, SelectMenuBuilder,  ActionRowBuilder,  SelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ticketselection")
         .setDescription("Sending a message for ticketselection")
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const channel = event.channel;
         const roles = await redisClient.keys(`ticketselection-${event.guild.id}-*`).catch((err) => {
             eb.setColor("Red").addFields({

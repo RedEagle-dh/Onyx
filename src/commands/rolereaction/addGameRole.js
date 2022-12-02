@@ -1,6 +1,5 @@
 
 require('dotenv').config({path: "../../.env"});
-const redisClient = require("../../database/database")
 const { createRoleSelectionDoc } = require("../../functions/jsonCreator");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
         .addStringOption(option => option.setName("emoji").setDescription("The emoji you want to use").setRequired(true))
         .addRoleOption(option => option.setName("role").setDescription("The role for the select-menu").setRequired(true))
     ,
-    async execute(event) {
+    async execute(event, redisClient) {
         const role = event.options.getRole("role");
         const gamename = event.options.getString("gamename");
         const formattedGameName = gamename.toLowerCase().replace(/ /g, "_");

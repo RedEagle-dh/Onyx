@@ -1,13 +1,12 @@
 const {InteractionType, ChannelType} = require("discord-api-types/v10");
 const {EmbedBuilder, PermissionsBitField} = require("discord.js");
-const redisClient = require("../../database/database");
 const {Modal, TextInputComponent, showModal} = require("discord-modals");
 const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../../functions/embedCreator");
 const {resolveButton} = require("../../functions/resolveFunctions");
 const {getUserFromMention} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "interactionCreate",
-    async execute(event) {
+    async execute(event, redisClient) {
         const command = event.client.commands.get(event.commandName);
         switch (event.type) {
             case InteractionType.MessageComponent: {
@@ -173,7 +172,7 @@ module.exports = {
                                             ]
                                         }).then(async (channel) => {
                                             await event.member.voice.setChannel(channel);
-                                            await voiceAction(1, event.member, channel);
+                                            await voiceAction(1, event.member, channel, redisClient);
                                             await event.editReply({
                                                 embeds: [new EmbedBuilder().setColor("#2F3136").addFields({
                                                     name: ":white_check_mark: Channel Created",
@@ -215,7 +214,7 @@ module.exports = {
                                         ]
                                     }).then(async (channel) => {
                                         await event.member.voice.setChannel(channel);
-                                        await voiceAction(1, event.member, channel);
+                                        await voiceAction(1, event.member, channel, redisClient);
                                         await event.editReply({
                                             embeds: [new EmbedBuilder().setColor("#2F3136").addFields({
                                                 name: ":white_check_mark: Channel Created",
@@ -323,7 +322,7 @@ module.exports = {
         }
         if (command && event.type) {
             try {
-                await command.execute(event);
+                await command.execute(event, redisClient);
             } catch (error) {
                 console.error(error);
 

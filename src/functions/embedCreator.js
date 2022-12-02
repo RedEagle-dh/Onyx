@@ -1,7 +1,6 @@
 const {EmbedBuilder} = require("discord.js");
-const redisClient = require("../database/database")
 
-async function voiceAction(action, member, channel) {
+async function voiceAction(action, member, channel, redisClient) {
     const jsonFile = JSON.parse(await redisClient.get(`serverconfig-${channel.guild.id}`))
     const log = channel.guild.channels.cache.find(c => c.id === jsonFile.logchannel);
     const eb = new EmbedBuilder();

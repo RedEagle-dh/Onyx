@@ -1,10 +1,8 @@
-const redisClient = require("../../database/database");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
-const {functionLockedEmbed} = require("../../functions/embedCreator");
 require("dotenv").config({path: "../../.env"});
 module.exports = {
     name: "guildMemberAdd",
-    async execute(member) {
+    async execute(member, redisClient) {
         if (await featureIsUnlocked(member.guild.id, "serverstats")) {
             const privateServerId = process.env.SERVERID_PRIVATE;
             const mrFunLeagueBuildsId = process.env.SERVERID_MRFUNLEAGUEBUILDS;

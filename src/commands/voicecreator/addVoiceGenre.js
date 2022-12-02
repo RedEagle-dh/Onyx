@@ -1,4 +1,3 @@
-const redisClient = require("../../database/database")
 const {
     SlashCommandBuilder,
     EmbedBuilder
@@ -14,7 +13,7 @@ module.exports = {
         .addStringOption(option => option.setName("emoji").setDescription("The emoji you want to use").setRequired(true))
         .addIntegerOption(option => option.setName("maxmembers").setDescription("The maximum amount of members.").setRequired(false))
         .addRoleOption(option => option.setName("role").setDescription("The role which is allowed to create the voice channel").setRequired(false)),
-    async execute(event) {
+    async execute(event, redisClient) {
         if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
