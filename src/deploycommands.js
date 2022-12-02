@@ -1,10 +1,11 @@
-require('dotenv').config({path: ".env"});
+require('dotenv').config({path: "../.env"});
 const fs = require("fs");
 const {REST} =  require("@discordjs/rest");
 const {Routes} = require("discord-api-types/v10");
 const rest = new REST({version: '10'}).setToken(process.env.TOKEN)
 const { Logger } = require("./Log/getLogger")
 const __Log = new Logger();
+const { exit } = require('process');
 const methods = {};
 
 methods.deploycmd = async function run() {
@@ -27,6 +28,7 @@ methods.deploycmd = async function run() {
         __Log.info(`${commands.length} application (/) commands refreshed.`);
     } catch (err) {
         __Log.error("Failed refreshing commands: " + err);
+        exit();
     }
 }
 

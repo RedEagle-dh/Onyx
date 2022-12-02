@@ -8,7 +8,8 @@ const deploy = require("./deploycommands");
 const discordModals = require("discord-modals");
 const {getDatabase} = require("./database/database")
 const redisClient = new getDatabase();
-const { Logger } = require("./Log/getLogger")
+const { Logger } = require("./Log/getLogger");
+const { exit } = require('process');
 const __Log = new Logger();
 deploy.data.deploycmd();
 
@@ -32,6 +33,7 @@ try {
     __Log.info("Events successfully loaded!");
 } catch (err) {
     __Log.error("Eventloader error: " + err);
+    exit();
 }
 
 
@@ -50,6 +52,7 @@ async function main() {
         __Log.info("Events successfully loaded!");
     } catch (err) {
         __Log.error("Commandloader error: " + err);
+        exit();
     }
     
     
@@ -64,6 +67,7 @@ async function main() {
         }
     }).catch((err) => {
         __Log.error(`Error while getting serverconfig: ${err}`);
+        exit();
     })
 }
 
