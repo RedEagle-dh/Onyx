@@ -12,8 +12,8 @@ module.exports = {
                 .setDescription("The number of messages")
                 .setRequired(true)
         ),
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "moderation")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "moderation", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

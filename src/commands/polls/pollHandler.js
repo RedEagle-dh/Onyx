@@ -18,7 +18,7 @@ module.exports = {
             .addBooleanOption(option => option.setName("share").setDescription("Whether you want to share the result or not").setRequired(true))
         ),
     async execute(event, redisClient) {
-        if (!await featureIsUnlocked(event.guild.id, "polls")) {
+        if (!await featureIsUnlocked(event.guild.id, "polls", redisClient)) {
             event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

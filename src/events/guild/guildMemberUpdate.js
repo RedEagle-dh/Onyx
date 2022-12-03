@@ -3,8 +3,8 @@ const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {AuditLogEvent} = require("discord-api-types/v10");
 module.exports = {
     name: "guildMemberUpdate",
-    async execute(oldMember, newMember, redisClient, client) {
-        if (await featureIsUnlocked(oldMember.guild.id, "moderation")) {
+    async execute(oldMember, newMember, redisClient, client, __Log) {
+        if (await featureIsUnlocked(oldMember.guild.id, "moderation", redisClient)) {
             const jsonFile = JSON.parse(await redisClient.get(`serverconfig-${oldMember.guild.id}`))
             let log = oldMember.guild.channels.cache.find(c => c.id === jsonFile.logchannel);
             const eb = new EmbedBuilder();
@@ -55,7 +55,7 @@ module.exports = {
                 try {
                     log.send({embeds: [eb]});
                 } catch (e) {
-                    console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+                    __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
                 }
 
             } else if (oldMember.isCommunicationDisabled() && !newMember.isCommunicationDisabled()) {
@@ -80,7 +80,7 @@ module.exports = {
                 try {
                     log.send({embeds: [eb]});
                 } catch (e) {
-                    console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+                    __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
                 }
             }
 

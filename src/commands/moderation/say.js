@@ -7,8 +7,8 @@ module.exports = {
         .setDescription("Use \\n to create a line break. Markdown and Mentions are supported except codeblocks.")
         .addStringOption(option => option.setName("msg").setDescription("The message to send").setRequired(true))
     ,
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "moderation")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "moderation", redisClient)) {
             event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

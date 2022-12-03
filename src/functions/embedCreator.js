@@ -1,6 +1,6 @@
 const {EmbedBuilder} = require("discord.js");
 
-async function voiceAction(action, member, channel, redisClient) {
+async function voiceAction(action, member, channel, redisClient, client, __Log) {
     const jsonFile = JSON.parse(await redisClient.get(`serverconfig-${channel.guild.id}`))
     const log = channel.guild.channels.cache.find(c => c.id === jsonFile.logchannel);
     const eb = new EmbedBuilder();
@@ -30,7 +30,7 @@ async function voiceAction(action, member, channel, redisClient) {
     try {
         log.send({embeds: [eb]});
     } catch (e) {
-        console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+        __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
     }
 
 }

@@ -1,6 +1,6 @@
 module.exports = {
     name: "messageReactionRemove",
-    async execute(reaction, redisClient, user) {
+    async execute(reaction, user, redisClient) {
         if (user.id === reaction.client.user.id) {
             return;
         }

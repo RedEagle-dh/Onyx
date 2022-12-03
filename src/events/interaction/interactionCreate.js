@@ -6,8 +6,8 @@ const {resolveButton} = require("../../functions/resolveFunctions");
 const {getUserFromMention} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "interactionCreate",
-    async execute(event, redisClient) {
-        const command = event.client.commands.get(event.commandName);
+    async execute(event, redisClient, client, __Log) {
+        const command = client.commands.get(event.commandName);
         switch (event.type) {
             case InteractionType.MessageComponent: {
                 if (event.type === InteractionType.MessageComponent) {
@@ -57,7 +57,7 @@ module.exports = {
                         case "help": {
                             switch (event.values[0]) {
                                 case "functions": {
-                                    event.update({embeds: [botFunctions(event.client)], components: [event.message.components[0]]});
+                                    event.update({embeds: [botFunctions(client)], components: [event.message.components[0]]});
                                     break;
                                 }
                                 case "botdev": {
@@ -288,7 +288,7 @@ module.exports = {
                                             .setRequired(false),
                                     );
                                 await showModal(modal, {
-                                    client: event.client,
+                                    client: client,
                                     interaction: event
                                 })
                             }
@@ -322,9 +322,10 @@ module.exports = {
         }
         if (command && event.type) {
             try {
+                __Log.debug(`${event.user.tag} used /${event.commandName}`)
                 await command.execute(event, redisClient);
             } catch (error) {
-                console.error(error);
+                __Log.error(error);
 
                     if (event.deferred) {
                         event.editReply({embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
@@ -343,9 +344,6 @@ module.exports = {
                                     inline: true
                                 }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
                     }
-
-
-
             }
         }
 

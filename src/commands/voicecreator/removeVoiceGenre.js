@@ -11,8 +11,8 @@ module.exports = {
         .setDescription("Removing a voice genre from the select-menu")
         .addStringOption(option => option.setName("voicename").setDescription("The name of the game").setRequired(true))
     ,
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "customchannels", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

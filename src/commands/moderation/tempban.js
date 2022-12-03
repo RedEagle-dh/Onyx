@@ -36,7 +36,7 @@ module.exports = {
         .addStringOption(option => option.setName("comment").setDescription("A comment for the ban").setRequired(false))
     ,
     async execute(event, redisClient) {
-        if (!await featureIsUnlocked(event.guild.id, "moderation")) {
+        if (!await featureIsUnlocked(event.guild.id, "moderation", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }
@@ -69,9 +69,8 @@ module.exports = {
         let newReason;
         const currentDate = new Date();
         const newUnbanDate = new Date();
-        console.log(unbandate)
+        
         newUnbanDate.setTime(unbandate);
-        console.log()
         if (!comment) {
             newReason = `${reason} | ${currentDate.toLocaleString().split(",")[0]} - ${newUnbanDate.toLocaleString().split(",")[0]} | ${event.user.tag}`;
         } else {

@@ -3,7 +3,7 @@ const {EmbedBuilder} = require("discord.js");
 const {stopRecordVoiceTime, recordVoiceTime} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "voiceStateUpdate",
-    async execute(oldState, newState, redisClient) {
+    async execute(oldState, newState, redisClient, client, __Log) {
         // Voice Stats
         const jsonString = await redisClient.get(`${newState.guild.id}-${newState.member.id}`);
         const jsonObj = JSON.parse(jsonString);
@@ -63,8 +63,8 @@ module.exports = {
                                         });
                                         log.send({embeds: [eb]});
                                     } catch (e) {
-                                        console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
-                                        console.log("Fatal Error: Bot does not have enough permissions to delete the voice channel.\nBug report: " + err)
+                                        __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
+                                        __Log.error("Fatal Error: Bot does not have enough permissions to delete the voice channel.\nBug report: " + err)
                                     }
                                 })
                             }

@@ -1,3 +1,4 @@
+console.log("   ____                   \n  / __ \\                  \n | |  | |_ __  _   ___  __\n | |  | | '_ \\| | | \\ \\/ /\n | |__| | | | | |_| |>  < \n  \\____/|_| |_|\\__, /_/\\_\\\n                __/ |     \n               |___/      \n")
 require('dotenv').config({path: ".env"});
 const { Client, Collection, EmbedBuilder, ActionRowBuilder, Partials} = require("discord.js");
 const { DisTube } = require("distube");
@@ -12,7 +13,6 @@ const { Logger } = require("./Log/getLogger");
 const { exit } = require('process');
 const __Log = new Logger();
 deploy.data.deploycmd();
-
 
 discordModals(client);
 
@@ -30,7 +30,7 @@ try {
             }
         }
     }
-    __Log.info("Events successfully loaded!");
+    __Log.success("Events successfully loaded!");
 } catch (err) {
     __Log.error("Eventloader error: " + err);
     exit();
@@ -49,7 +49,7 @@ async function main() {
                 client.commands.set(command.data.name, command);
             }
         }
-        __Log.info("Events successfully loaded!");
+        __Log.success("Events successfully loaded!");
     } catch (err) {
         __Log.error("Commandloader error: " + err);
         exit();

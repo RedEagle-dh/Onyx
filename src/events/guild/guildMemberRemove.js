@@ -2,8 +2,8 @@ const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {EmbedBuilder} = require("discord.js");
 module.exports = {
     name: "guildMemberRemove",
-    async execute(member, redisClient) {
-        if (await featureIsUnlocked(member.guild.id, "serverstats")) {
+    async execute(member, redisClient, client, __Log) {
+        if (await featureIsUnlocked(member.guild.id, "serverstats", redisClient)) {
             if (member.guild.id === process.env.SERVERID_PRIVATE) {
                 const channel = member.guild.channels.cache.find(c => c.id === "817413091704307712");
                 channel.setName(`Members: ${member.guild.memberCount}`)
@@ -41,7 +41,7 @@ module.exports = {
             try {
                 log.send({embeds: [eb]});
             } catch (e) {
-                console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+                __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
             }
         }
         let reason = fetchedLogs.entries.first().reason;
@@ -70,7 +70,7 @@ module.exports = {
             try {
                 log.send({embeds: [eb]});
             } catch (e) {
-                console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+                __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
             }
         } else if (fetchedLogs.entries.first().action === 22) {
             log = member.guild.channels.cache.find(c => c.id === jsonFile.logchannel);
@@ -93,7 +93,7 @@ module.exports = {
             try {
                 log.send({embeds: [eb]});
             } catch (e) {
-                console.log("JSON Error: Log Channel is set incorrectly or got deleted.")
+                __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
             }
         }
     }

@@ -14,7 +14,7 @@ module.exports = {
         .addIntegerOption(option => option.setName("maxmembers").setDescription("The maximum amount of members.").setRequired(false))
         .addRoleOption(option => option.setName("role").setDescription("The role which is allowed to create the voice channel").setRequired(false)),
     async execute(event, redisClient) {
-        if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
+        if (!await featureIsUnlocked(event.guild.id, "customchannels", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

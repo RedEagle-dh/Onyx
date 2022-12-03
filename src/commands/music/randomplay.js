@@ -7,8 +7,8 @@ module.exports = {
         .setName("random")
         .setDescription("Playing a random meme")
     ,
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "music")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "music", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

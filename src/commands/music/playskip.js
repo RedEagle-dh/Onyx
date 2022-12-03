@@ -9,8 +9,8 @@ module.exports = {
         .setDescription("Skips the current and plays the given song.")
         .addStringOption(option => option.setName("songname").setDescription("The songname").setRequired(true))
     ,
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "music")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "music", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

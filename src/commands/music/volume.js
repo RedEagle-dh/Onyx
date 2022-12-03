@@ -6,8 +6,8 @@ module.exports = {
         .setName("vol")
         .setDescription("Sets the volume of the music")
         .addIntegerOption(option => option.setName("volume").setDescription("The volume of the music").setRequired(true).setMinValue(0).setMaxValue(100)),
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "music")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "music", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

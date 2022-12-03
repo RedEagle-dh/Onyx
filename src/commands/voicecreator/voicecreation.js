@@ -12,7 +12,7 @@ module.exports = {
         .setDescription("Sending a message for voicecreation")
     ,
     async execute(event, redisClient) {
-        if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
+        if (!await featureIsUnlocked(event.guild.id, "customchannels", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

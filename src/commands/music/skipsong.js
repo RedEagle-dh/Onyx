@@ -5,8 +5,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("skip")
         .setDescription("Skips the current song"),
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "music")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "music", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }
@@ -20,11 +20,8 @@ module.exports = {
             return;
         }
         let embed;
-        console.log(event.client.DisTube.getQueue(voice).songs.length)
         if (event.client.DisTube.getQueue(voice).songs.length !== 1) {
-            await event.client.DisTube.skip(voice).then((song) => {
-                console.log(song.name)
-            });
+            await event.client.DisTube.skip(voice);
             embed = successEmbed("Song skipped successfully.")
         } else {
             embed = failEmbed("No songs in queue.")

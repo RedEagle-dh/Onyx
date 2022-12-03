@@ -1,6 +1,6 @@
 module.exports = {
     name: "messageCreate",
-    async execute(message, redisClient) {
+    async execute(message, redisClient, client, __Log) {
         if (message.content.startsWith("!say") && message.member.id !== "1002251457392820244") {
             const msg = message.content.split(" ")
             let newMsg = "";
@@ -22,6 +22,6 @@ module.exports = {
             messagecount: jsonObj.messagecount + 1,
             voiceseconds: jsonObj.voiceseconds,
             invoicesince: jsonObj.invoicesince
-        }))).catch(err => console.log(err));
+        }))).catch(err => __Log.error(err));
     }
 }

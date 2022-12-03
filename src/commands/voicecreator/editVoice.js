@@ -11,8 +11,8 @@ module.exports = {
         .setName("voiceedit")
         .setDescription("Sending a message for editing a custom voice channel")
     ,
-    async execute(event) {
-        if (!await featureIsUnlocked(event.guild.id, "customchannels")) {
+    async execute(event, redisClient) {
+        if (!await featureIsUnlocked(event.guild.id, "customchannels", redisClient)) {
             event.reply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

@@ -12,7 +12,7 @@ module.exports = {
         .addSubcommand(subcommand => subcommand.setName("show").setDescription("Show your birthday or another member's birthday").addUserOption(option => option.setName("member").setDescription("The member").setRequired(false)))
     ,
     async execute(event, redisClient) {
-        if (!await featureIsUnlocked(event.guild.id, "birthday")) {
+        if (!await featureIsUnlocked(event.guild.id, "birthday", redisClient)) {
             event.editReply({embeds: [functionLockedEmbed()], ephemeral: true})
             return;
         }

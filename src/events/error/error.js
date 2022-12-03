@@ -1,6 +1,6 @@
 module.exports = {
     name: "error",
-    execute(err) {
-        console.log("Errors:", err)
+    execute(err, redis, client, __Log) {
+        __Log.error("Errors:", err)
     }
-}
+} 
