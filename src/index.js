@@ -49,7 +49,7 @@ async function main() {
                 client.commands.set(command.data.name, command);
             }
         }
-        __Log.success("Events successfully loaded!");
+        __Log.success("Commands successfully loaded!");
     } catch (err) {
         __Log.error("Commandloader error: " + err);
         exit();
