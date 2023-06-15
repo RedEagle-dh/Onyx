@@ -1,5 +1,5 @@
 require('dotenv').config({path: "../../.env"});
-const { SlashCommandBuilder, SelectMenuBuilder,  ActionRowBuilder,  SelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, StringSelectMenuBuilder,  ActionRowBuilder,  StringSelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ticketselection")
@@ -48,7 +48,7 @@ module.exports = {
 
 
         const actionRow = new ActionRowBuilder().addComponents(
-            new SelectMenuBuilder().setCustomId("ticketselection").addOptions(
+            new StringSelectMenuBuilder().setCustomId("ticketselection").addOptions(
                 ...getSelectMenuOptions(result)
             ).setMaxValues(1).setMinValues(0).setPlaceholder("Select a Ticket")
         )
@@ -71,7 +71,7 @@ module.exports = {
 function getSelectMenuOptions(result) {
     const list = [];
     result.forEach(row => {
-        list.push(new SelectMenuOptionBuilder().setLabel(`${row.ticketname}`).setDescription(`${row.description}`).setValue(`${row.ticketname.toLowerCase().replaceAll(" ", "_")}`).setEmoji(`${row.emoji}`));
+        list.push(new StringSelectMenuOptionBuilder().setLabel(`${row.ticketname}`).setDescription(`${row.description}`).setValue(`${row.ticketname.toLowerCase().replaceAll(" ", "_")}`).setEmoji(`${row.emoji}`));
     })
     list.sort((a, b) => a.data.label.localeCompare(b.data.label));
     return list;

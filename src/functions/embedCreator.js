@@ -128,23 +128,6 @@ function memberCommands() {
                 inline: false
             },
             {
-                name: "<:music:1017857148706897960> Music Bot <:owner:1017858152227684435>",
-                value: "> `/join` - Bot joining your voice channel\n" +
-                    "> `/disconnect` - Bot disconnects from your voice channel\n" +
-                    "> `/play` - Searches for your song and plays it\n" +
-                    "> `/random` - Plays a random meme\n" +
-                    "> `/genre` - Plays music from a specific genre\n" +
-                    "> `/skip` - Skips the current song, if possible\n" +
-                    "> `/stop` - Stops playing and disconnects from your voice channel\n" +
-                    "> `/queue` - Shows the current queue\n" +
-                    "> `/current` - Shows the current queue and song\n" +
-                    "> `/pause` - Pausing the current song\n" +
-                    "> `/resume` - Resuming the paused song\n" +
-                    "> `/vol` - Edit the volume of the music\n"
-                ,
-                inline: false
-            },
-            {
                 name: ":calendar: Birthday Calendar <:owner:1017858152227684435>",
                 value: "> `/birthday` - Shows a user's birthday",
                 inline: false
@@ -179,16 +162,6 @@ function botFunctions(client) {
                 value: "`»` Recording the voicetime a user spends unmute in a non-afk channel\n" +
                     "`»` Recording the amount of messages a user sends\n" +
                     "`»` Serverstats about server-members and server-boosters <:owner:1017858152227684435>",
-                inline: false
-            },
-            {
-                name: "<:music:1017857148706897960> Music",
-                value: "`»` Playing music from YouTube\n" +
-                    "`»` Playing random memes\n" +
-                    "`»` Playing music from a specific genre\n" +
-                    "`»` <:maintenance:1017857920383328257> **Soon**" +
-                    "|| <:spotify:1017857283079811233> Playing music from spotify ||"
-                ,
                 inline: false
             },
             {

@@ -1,5 +1,5 @@
 require('dotenv').config({path: "../../.env"});
-const { SlashCommandBuilder, SelectMenuBuilder,  ActionRowBuilder,  SelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, StringSelectMenuBuilder,  ActionRowBuilder,  StringSelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("rrshow")
@@ -48,7 +48,7 @@ module.exports = {
 
 
         const actionRow = new ActionRowBuilder().addComponents(
-            new SelectMenuBuilder().setCustomId("rollenauswahl").addOptions(
+            new StringSelectMenuBuilder().setCustomId("rollenauswahl").addOptions(
                 ...getSelectMenuOptions(result)
             ).setMaxValues(result.length).setMinValues(0).setPlaceholder("Select a game")
         )
@@ -71,7 +71,7 @@ module.exports = {
 function getSelectMenuOptions(result) {
     const list = [];
     result.forEach(row => {
-        list.push(new SelectMenuOptionBuilder().setLabel(`${row.gamename}`).setDescription(`${row.description}`).setValue(`${row.gamename.toLowerCase().replaceAll(" ", "_")}`).setEmoji(`${row.emoji}`));
+        list.push(new StringSelectMenuOptionBuilder().setLabel(`${row.gamename}`).setDescription(`${row.description}`).setValue(`${row.gamename.toLowerCase().replaceAll(" ", "_")}`).setEmoji(`${row.emoji}`));
     })
     list.sort((a, b) => a.data.label.localeCompare(b.data.label));
     return list;

@@ -1,8 +1,8 @@
 const {
     SlashCommandBuilder,
-    SelectMenuBuilder,
+    StringSelectMenuBuilder,
     ActionRowBuilder,
-    SelectMenuOptionBuilder, EmbedBuilder
+    StringSelectMenuOptionBuilder, EmbedBuilder
 } = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
 const {functionLockedEmbed} = require("../../functions/embedCreator");
@@ -43,7 +43,7 @@ module.exports = {
 
 
         const actionRow = new ActionRowBuilder().addComponents(
-            new SelectMenuBuilder().setCustomId("voicecreation").addOptions(
+            new StringSelectMenuBuilder().setCustomId("voicecreation").addOptions(
                 ...getSelectMenuOptions(result)
             ).setMaxValues(1)
         )
@@ -73,7 +73,7 @@ function getSelectMenuOptions(result) {
         if (max === "0") {
             max = "unlimited";
         }
-        list.push(new SelectMenuOptionBuilder().setLabel(`${row.voicename}`).setDescription(`A Voice for ${row.voicename} with ${max} max. members`).setValue(`${row.voicename}`).setEmoji(`${row.emoji}`));
+        list.push(new StringSelectMenuOptionBuilder().setLabel(`${row.voicename}`).setDescription(`A Voice for ${row.voicename} with ${max} max. members`).setValue(`${row.voicename}`).setEmoji(`${row.emoji}`));
     })
     list.sort((a, b) => a.data.label.localeCompare(b.data.label));
     return list;

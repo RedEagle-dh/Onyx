@@ -1,6 +1,5 @@
 const {InteractionType, ChannelType} = require("discord-api-types/v10");
 const {EmbedBuilder, PermissionsBitField} = require("discord.js");
-const {Modal, TextInputComponent, showModal} = require("discord-modals");
 const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../../functions/embedCreator");
 const {resolveButton} = require("../../functions/resolveFunctions");
 const {getUserFromMention} = require("../../functions/OuterFunctions");

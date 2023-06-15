@@ -1,12 +1,10 @@
 console.log("   ____                   \n  / __ \\                  \n | |  | |_ __  _   ___  __\n | |  | | '_ \\| | | \\ \\/ /\n | |__| | | | | |_| |>  < \n  \\____/|_| |_|\\__, /_/\\_\\\n                __/ |     \n               |___/      \n")
 require('dotenv').config({path: ".env"});
 const { Client, Collection, EmbedBuilder, ActionRowBuilder, Partials} = require("discord.js");
-const { DisTube } = require("distube");
 const { createButtons } = require("./functions/OuterFunctions");
 const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences", "GuildMessageReactions"], partials: [Partials.Reaction, Partials.Message, Partials.Channel] })
 const fs = require("fs");
 const deploy = require("./deploycommands");
-const discordModals = require("discord-modals");
 const {getDatabase} = require("./database/database")
 const redisClient = new getDatabase();
 const { Logger } = require("./Log/getLogger");
@@ -14,7 +12,6 @@ const { exit } = require('process');
 const __Log = new Logger();
 deploy.data.deploycmd();
 
-discordModals(client);
 
 try {
     __Log.warn("Loading events...");
@@ -73,40 +70,6 @@ async function main() {
 
 
 main();
-
-client.DisTube = new DisTube(client, {
-    searchSongs: 5,
-    leaveOnStop: false,
-    emitNewSongOnly: true,
-    leaveOnFinish: true,
-    leaveOnEmpty: true,
-})
-
-client.DisTube.on("searchResult", (event, result) => {
-    const eb = new EmbedBuilder();
-    if (event.commandName === "playskip") {
-
-        eb.setTitle("Search Results").setDescription("Select a song to skip the current one and play your selection").setColor("#2F3136")
-    } else {
-        eb.setTitle("Search Results").setDescription("Select a song to add to the queue").setColor("#2F3136")
-    }
-
-    let res = "";
-    result.forEach((song, index) => {
-        res = res + `**${index + 1}.** ${song.name}\n`
-    })
-    const buttons = new ActionRowBuilder()
-        .addComponents(
-            ...createButtons(result)
-        )
-    eb.addFields({
-        name: "Results",
-        value: `${res}`,
-        inline: true
-    })
-    event.reply({embeds: [eb], components: [buttons]})
-
-})
 
 process.on("unhandledRejection", (err) => {
     __Log.error("Unhandled rejection: " + err);
