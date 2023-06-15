@@ -1,5 +1,5 @@
 const deploy = require("../../deploycommands");
-const {fatalError} = require("../../functions/embedCreator");
+const {fatalError} = require("../../messages/embeds/embedHandler");
 const {successEmbed} = require("../../functions/OuterFunctions");
 module.exports = {
     name: "modalSubmit",

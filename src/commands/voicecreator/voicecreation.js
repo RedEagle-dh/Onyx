@@ -5,7 +5,7 @@ const {
     StringSelectMenuOptionBuilder, EmbedBuilder
 } = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
-const {functionLockedEmbed} = require("../../functions/embedCreator");
+const {functionLockedEmbed} = require("../../messages/embeds/embedHandler");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("voicecreation")

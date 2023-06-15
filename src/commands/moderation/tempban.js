@@ -1,6 +1,6 @@
 const {SlashCommandBuilder} = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
-const {functionLockedEmbed, getBanEmbed} = require("../../functions/embedCreator");
+const {functionLockedEmbed, getBanEmbed} = require("../../messages/embeds/embedHandler");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("tempban")

@@ -1,7 +1,7 @@
 const {PermissionFlagsBits} = require("discord-api-types/v10");
 const {EmbedBuilder, SlashCommandBuilder} = require("discord.js");
 const {featureIsUnlocked} = require("../../functions/OuterFunctions");
-const {functionLockedEmbed} = require("../../functions/embedCreator");
+const {functionLockedEmbed} = require("../../messages/embeds/embedHandler");
 
 module.exports = {
     data: new SlashCommandBuilder()

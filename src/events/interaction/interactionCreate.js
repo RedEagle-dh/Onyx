@@ -1,6 +1,6 @@
 const {InteractionType, ChannelType} = require("discord-api-types/v10");
 const {EmbedBuilder, PermissionsBitField} = require("discord.js");
-const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../../functions/embedCreator");
+const {errorInformation, voiceAction, fatalError, modCommands, adminCommands, botDevCommands, memberCommands, nitroCommands, botFunctions} = require("../../messages/embeds/embedHandler");
 const {resolveButton} = require("../../functions/resolveFunctions");
 const {getUserFromMention} = require("../../functions/OuterFunctions");
 module.exports = {
@@ -321,7 +321,7 @@ module.exports = {
         }
         if (command && event.type) {
             try {
-                __Log.debug(`${event.user.tag} used /${event.commandName}`)
+                __Log.debug(`${event.guild.name} | ${event.user.username} used /${event.commandName}`)
                 await command.execute(event, redisClient);
             } catch (error) {
                 __Log.error(error);
@@ -333,7 +333,7 @@ module.exports = {
                                     name: "Error message",
                                     value: `\`\`\`js\n${error.message}\`\`\``,
                                     inline: true
-                                }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
+                                }).setTimestamp().setFooter({text: "Bot developer: redeagle."})], ephemeral: true});
                     } else {
                         event.reply({embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
                                 .setDescription("An error occurred while executing this command. Please try to correct your input. If the error is still there, contact the developer.")
@@ -341,7 +341,7 @@ module.exports = {
                                     name: "Error message",
                                     value: `\`\`\`js\n${error.message}\`\`\``,
                                     inline: true
-                                }).setTimestamp().setFooter({text: "Bot developer: RedEagle#0400"})], ephemeral: true});
+                                }).setTimestamp().setFooter({text: "Bot developer: redeagle."})], ephemeral: true});
                     }
             }
         }

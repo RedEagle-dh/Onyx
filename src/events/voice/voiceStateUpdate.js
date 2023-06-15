@@ -1,4 +1,4 @@
-const {voiceAction} = require("../../functions/embedCreator");
+const {voiceAction} = require("../../messages/embeds/embedHandler");
 const {EmbedBuilder} = require("discord.js");
 const {stopRecordVoiceTime, recordVoiceTime} = require("../../functions/OuterFunctions");
 module.exports = {

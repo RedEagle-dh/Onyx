@@ -1,21 +1,21 @@
-const {EmbedBuilder} = require("discord.js");
+const { EmbedBuilder, Colors } = require("discord.js");
 
-async function voiceAction(action, member, channel, redisClient, client, __Log) {
+const voiceAction = async (action, member, channel, redisClient, client, __Log) => {
     const jsonFile = JSON.parse(await redisClient.get(`serverconfig-${channel.guild.id}`))
     const log = channel.guild.channels.cache.find(c => c.id === jsonFile.logchannel);
     const eb = new EmbedBuilder();
     if (action === 1) {
         eb.setColor("Green").setTitle("🔊 Voice channel created").setDescription("A voice channel has been created.")
             .addFields({
-                    name: "Member",
-                    value: `${member}`,
-                    inline: true
-                },
+                name: "Member",
+                value: `${member}`,
+                inline: true
+            },
                 {
                     name: "Voice channel",
                     value: `${channel}`,
                     inline: true
-                }).setFooter({text: "Made with ♡ by RedEagle#0400"}).setTimestamp();
+                }).setFooter({ text: "Made with ♡ by RedEagle#0400" }).setTimestamp();
     } else if (action === 2) {
         eb.setColor("Red").setTitle("🔇 Voice channel deleted").setDescription("A voice channel has been deleted because it was empty.")
             .addFields(
@@ -23,12 +23,12 @@ async function voiceAction(action, member, channel, redisClient, client, __Log) 
                     name: "Voice channel name",
                     value: `${channel.name}`,
                     inline: true
-                }).setFooter({text: "Made with ♡ by RedEagle#0400"}).setTimestamp();
+                }).setFooter({ text: "Made with ♡ by RedEagle#0400" }).setTimestamp();
 
 
     }
     try {
-        log.send({embeds: [eb]});
+        log.send({ embeds: [eb] });
     } catch (e) {
         __Log.error("JSON Error: Log Channel is set incorrectly or got deleted.")
     }
@@ -36,7 +36,7 @@ async function voiceAction(action, member, channel, redisClient, client, __Log) 
 }
 
 
-function errorInformation(message) {
+const errorInformation = (message) => {
     return new EmbedBuilder().addFields({
         name: ":x: Error",
         value: `${message}`,
@@ -44,7 +44,7 @@ function errorInformation(message) {
     }).setColor("Red");
 }
 
-function fatalError(message) {
+const fatalError = (message) => {
     return new EmbedBuilder().addFields({
         name: ":x: Fatal Error",
         value: `${message}`,
@@ -52,7 +52,7 @@ function fatalError(message) {
     }).setColor("Red");
 }
 
-function databaseError(message) {
+const databaseError = (message) => {
     return new EmbedBuilder().addFields({
         name: ":x: Database Error",
         value: `${message}`,
@@ -60,7 +60,7 @@ function databaseError(message) {
     }).setColor("Red");
 }
 
-function botDevCommands() {
+const botDevCommands = () => {
     return new EmbedBuilder().setTitle("Bot Developer Commands").setDescription("These commands are only for the bot developer.")
         .setColor("#0033cc").addFields({
             name: "<:database:1017902111851294761> Database Setup",
@@ -73,7 +73,7 @@ function botDevCommands() {
         })
 }
 
-function adminCommands() {
+const adminCommands = () => {
     return new EmbedBuilder().setTitle("Admin Commands").setDescription("These commands are only for the administrators.\n<:owner:1017858152227684435> Currently only available at the main server")
         .setColor("#cc0000").addFields(
             {
@@ -102,13 +102,13 @@ function adminCommands() {
                 name: ":calendar: Birthday Calendar <:owner:1017858152227684435>",
                 value: "> `/birthday add` - Adding a birthday to the calendar\n" +
                     "> `/birthday remove` - Removing a birthday from the calendar\n" +
-                    "> `/birthday enable` - Enabling the Birthday Function\n" +
-                    "> `/birthday disable` - Disabling the Birthday Function",
+                    "> `/birthday enable` - Enabling the Birthday const\n" +
+                    "> `/birthday disable` - Disabling the Birthday const",
                 inline: false
             })
 }
 
-function memberCommands() {
+const memberCommands = () => {
     return new EmbedBuilder().setTitle("Member Commands").setDescription("These commands are available for everyone.\n<:owner:1017858152227684435> Currently only available at selected servers")
         .setColor("#009933").addFields(
             {
@@ -135,7 +135,7 @@ function memberCommands() {
         )
 }
 
-function modCommands() {
+const modCommands = () => {
     return new EmbedBuilder().setTitle("Moderator Commands").setDescription("These commands are only for the moderators.")
         .setColor("#ffcc00").addFields({
             name: "<:slashcommand:1017901608299921491> Utility",
@@ -145,7 +145,7 @@ function modCommands() {
         })
 }
 
-function nitroCommands() {
+const nitroCommands = () => {
     return new EmbedBuilder().setTitle("Nitro Booster Commands").setDescription("These commands are only for nitro boosters.")
         .setColor("#ff33cc").addFields({
             name: "Nothing yet",
@@ -154,8 +154,8 @@ function nitroCommands() {
         })
 }
 
-function botFunctions(client) {
-    return new EmbedBuilder().setTitle("Bot Functions").setDescription("Here is a list of all bot functions.\n<:owner:1017858152227684435> Currently only available at selected servers")
+const botconsts = (client) => {
+    return new EmbedBuilder().setTitle("Bot consts").setDescription("Here is a list of all bot consts.\n<:owner:1017858152227684435> Currently only available at selected servers")
         .setColor("#ffffff").addFields(
             {
                 name: `${client.emojis.cache.find(e => e.id === "1017841129368072252")} Stats`,
@@ -184,7 +184,7 @@ function botFunctions(client) {
             })
 }
 
-function functionLockedEmbed() {
+const constLockedEmbed = () => {
     return new EmbedBuilder().setColor("#2F3136")
         .addFields([{
             name: `:x: This feature is locked`,
@@ -193,15 +193,81 @@ function functionLockedEmbed() {
         }])
 }
 
-function getBanEmbed(user, duration, reason, comment, mod) {
+const getBanEmbed = (user, duration, reason, comment, mod) => {
     if (!comment) {
         comment = "No comment";
     }
     return new EmbedBuilder().setColor("#2F3136")
-        .setAuthor({name: `${user.tag} was banned for ${duration}.`, iconURL: user.displayAvatarURL()})
+        .setAuthor({ name: `${user.tag} was banned for ${duration}.`, iconURL: user.displayAvatarURL() })
         .setDescription(`**Reason:** ${reason}\n**Comment:** ${comment}`)
-        .setFooter({text: `Banned by: ${mod.id}`, iconURL: mod.displayAvatarURL()}).setTimestamp()
+        .setFooter({ text: `Banned by: ${mod.id}`, iconURL: mod.displayAvatarURL() }).setTimestamp()
 }
+
+const getUserRemovedEmbed = (reason, fetchedLogs, member) => {
+    const eb = new EmbedBuilder().setColor("#2F3136").addFields({
+        name: "Reason",
+        value: reason,
+        inline: true
+    },
+        {
+            name: "Moderator",
+            value: `${fetchedLogs.entries.first().executor} (${fetchedLogs.entries.first().executor.tag})`,
+            inline: true
+        },
+        {
+            name: "User IDs",
+            value: `\`\`\`ml\nUser = ${member.user.id}\nModerator = ${fetchedLogs.entries.first().executor.id}\`\`\``,
+            inline: false
+        }).setFooter({ text: "User ID: " + member.id }).setTimestamp().setThumbnail(member.user.displayAvatarURL());
+
+    // AuditLogEvent (Kick = 20), (ban = 22)
+    if (fetchedLogs.entries.first().action === 20) {
+        return eb.setTitle(":no_entry: Member banned").setDescription(`${member.user.tag} (${member}) was banned`).setColor("Red");
+    } else {
+        return eb.setTitle(":exclamation: Member kicked").setDescription(`${member.user.tag} (${member}) was kicked`).setColor("Red");
+    }
+}
+
+const getUserLeftEmbed = (member) => {
+    return new EmbedBuilder().setColor("Red").setTitle(":wave: Member left").setDescription(`${member.user.tag} (${member}) left the server`)
+        .addFields({
+            name: "User",
+            value: `${member} (${member.user.tag})`,
+            inline: false
+        },
+            {
+                name: "Create Date",
+                value: `<t:${Math.round(member.user.createdTimestamp / 1000)}:d> (<t:${Math.round(member.user.createdTimestamp / 1000)}:R>)`,
+                inline: false
+            },
+            {
+                name: "Join Date",
+                value: `<t:${Math.round(member.joinedTimestamp / 1000)}:d> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`,
+                inline: false
+            }).setThumbnail(member.user.displayAvatarURL())
+        .setFooter({ text: "User ID: " + member.id }).setTimestamp();
+}
+
+const getUserJoinedEmbed = (member) => {
+    return new EmbedBuilder().setColor(Colors.Green).setTitle(`:wave: Member joined`).setDescription(`${member.user.tag} (${member}) joined the server`)
+        .addFields({
+            name: "User",
+            value: `${member} (${member.user.tag})`,
+            inline: false
+        },
+            {
+                name: "Create Date",
+                value: `<t:${Math.round(member.user.createdTimestamp / 1000)}:d> (<t:${Math.round(member.user.createdTimestamp / 1000)}:R>)`,
+                inline: false
+            },
+            {
+                name: "Join Date",
+                value: `<t:${Math.round(member.joinedTimestamp / 1000)}:d> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`,
+                inline: false
+            }).setThumbnail(member.user.displayAvatarURL())
+        .setFooter({ text: "User ID: " + member.id }).setTimestamp();
+}
+
 
 
 module.exports = {
@@ -213,8 +279,11 @@ module.exports = {
     memberCommands,
     adminCommands,
     botDevCommands,
-    botFunctions,
+    botconsts,
     nitroCommands,
-    functionLockedEmbed,
-    getBanEmbed
+    constLockedEmbed,
+    getBanEmbed,
+    getUserRemovedEmbed,
+    getUserLeftEmbed,
+    getUserJoinedEmbed
 }
