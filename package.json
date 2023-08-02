@@ -10,7 +10,6 @@
     "dotenv": "^16.0.3",
     "ioredis": "^5.2.4",
     "jimp": "^0.22.8",
-    "libsodium-wrappers": "^0.7.10",
     "log4js": "^6.7.1"
   },
   "devDependencies": {
