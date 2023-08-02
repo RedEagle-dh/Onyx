@@ -1,4 +1,8 @@
 {
+  "name": "Onyx",
+  "version": "1.8.23",
+  "description": "Discord bot - wip",
+  "author": "David Hermann / RedEaglee",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"

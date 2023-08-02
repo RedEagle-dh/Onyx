@@ -1,7 +1,9 @@
 module.exports = {
   apps : [{
-    name   : "Onyx",
-    script : "./index.js",
-    error_file: "./--error",
+    name: "Onyx",
+    cwd: "/", 
+    script: "./index.js",
+    watch: true,
+    error_file: "./--error"
   }]
 }
